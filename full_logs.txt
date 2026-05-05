@@ -1,0 +1,497 @@
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Compressed tables use zlib 1.3.2
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Number of transaction pools: 1
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Using Linux native AIO
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: innodb_buffer_pool_size_max=128m, innodb_buffer_pool_size=128m
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Completed initialization of buffer pool
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Buffered log writes (block size=512 bytes)
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: End of log at LSN=45125
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Opened 3 undo tablespaces
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: 128 rollback segments in 3 undo tablespaces are active.
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: log sequence number 45125; transaction id 14
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] Plugin 'FEEDBACK' is disabled.
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] Plugin 'wsrep-provider' is disabled.
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Buffer pool(s) load completed at 260505 18:44:59
+2026-05-05 18:45:00 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:00     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:00   errno: -111,
+2026-05-05 18:45:00   code: 'ECONNREFUSED',
+2026-05-05 18:45:00   syscall: 'connect',
+2026-05-05 18:45:00   address: '127.0.0.1',
+2026-05-05 18:45:00   port: 6379
+2026-05-05 18:45:00 }
+2026-05-05 18:45:00 2026-05-05 18:45:00 0 [Note] mysqld: Event Scheduler: Loaded 0 events
+2026-05-05 18:45:00 2026-05-05 18:45:00 0 [Note] mysqld: ready for connections.
+2026-05-05 18:45:00 Version: '11.4.10-MariaDB'  socket: '/run/mysqld/mysqld.sock'  port: 0  Alpine Linux
+2026-05-05 18:45:00 mysqladmin: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb-admin' instead
+2026-05-05 18:45:00 mysqld is alive
+2026-05-05 18:45:00 Setting up Database...
+2026-05-05 18:45:00 mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+2026-05-05 18:45:00 mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+2026-05-05 18:45:00 mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+2026-05-05 18:45:00 Importing Schema...
+2026-05-05 18:45:00 mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+2026-05-05 18:45:01 --------------
+2026-05-05 18:45:01 SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '11ac9576-fc10-11f0-91d1-92e0acbfb85d:1-333'
+2026-05-05 18:45:01 --------------
+2026-05-05 18:45:01 ERROR 1193 (HY000) at line 24: Unknown system variable 'GTID_PURGED'
+2026-05-05 18:45:01 Seeding Database...
+2026-05-05 18:45:01 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:01     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:01   errno: -111,
+2026-05-05 18:45:01   code: 'ECONNREFUSED',
+2026-05-05 18:45:01   syscall: 'connect',
+2026-05-05 18:45:01   address: '127.0.0.1',
+2026-05-05 18:45:01   port: 6379
+2026-05-05 18:45:01 }
+2026-05-05 18:45:02 ◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+2026-05-05 18:45:02 Starting Database Seeding...
+2026-05-05 18:45:02 Inserting Users...
+2026-05-05 18:45:02 Failed to connect to MySQL Database: connect ECONNREFUSED 127.0.0.1:3306
+2026-05-05 18:45:02  Seeding Error: Error: connect ECONNREFUSED 127.0.0.1:3306
+2026-05-05 18:45:02     at seedDatabase (/app/src/scripts/seed.js:10:16)
+2026-05-05 18:45:02     at Object.<anonymous> (/app/src/scripts/seed.js:67:1)
+2026-05-05 18:45:02     at Module._compile (node:internal/modules/cjs/loader:1705:14)
+2026-05-05 18:45:02     at Object..js (node:internal/modules/cjs/loader:1838:10)
+2026-05-05 18:45:02     at Module.load (node:internal/modules/cjs/loader:1441:32)
+2026-05-05 18:45:02     at Function._load (node:internal/modules/cjs/loader:1263:12)
+2026-05-05 18:45:02     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+2026-05-05 18:45:02     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+2026-05-05 18:45:02     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+2026-05-05 18:45:02     at node:internal/main/run_main_module:36:49 {
+2026-05-05 18:45:02   errno: -111,
+2026-05-05 18:45:02   code: 'ECONNREFUSED',
+2026-05-05 18:45:02   syscall: 'connect',
+2026-05-05 18:45:02   address: '127.0.0.1',
+2026-05-05 18:45:02   port: 3306,
+2026-05-05 18:45:02   fatal: true
+2026-05-05 18:45:02 }
+2026-05-05 18:45:02 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:02     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:02   errno: -111,
+2026-05-05 18:45:02 Starting Node.js Application...
+2026-05-05 18:45:02   code: 'ECONNREFUSED',
+2026-05-05 18:45:02   syscall: 'connect',
+2026-05-05 18:45:02   address: '127.0.0.1',
+2026-05-05 18:45:02   port: 6379
+2026-05-05 18:45:02 }
+2026-05-05 18:45:02 > food_waste_project@1.0.0 start
+2026-05-05 18:45:02 > node src/server.js
+2026-05-05 18:45:03 ◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+2026-05-05 18:45:03 ◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+2026-05-05 18:45:03 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:03     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:03   errno: -111,
+2026-05-05 18:45:03   code: 'ECONNREFUSED',
+2026-05-05 18:45:03   syscall: 'connect',
+2026-05-05 18:45:03   address: '127.0.0.1',
+2026-05-05 18:45:03   port: 6379
+2026-05-05 18:45:03 }
+2026-05-05 18:45:04 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:04     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:04   errno: -111,
+2026-05-05 18:45:04   code: 'ECONNREFUSED',
+2026-05-05 18:45:04   syscall: 'connect',
+2026-05-05 18:45:04   address: '127.0.0.1',
+2026-05-05 18:45:04   port: 6379
+2026-05-05 18:45:04 }
+2026-05-05 18:45:05 ◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+2026-05-05 18:45:05    Server is running on http://localhost:8080
+2026-05-05 18:45:05    Rate Limiting: 100 req / 15 min
+2026-05-05 18:45:05    MySQL Connectivity: Pool Initialized
+2026-05-05 18:45:05    Redis: Client Initialized
+2026-05-05 18:45:05   
+2026-05-05 18:45:05 Failed to connect to MySQL Database: connect ECONNREFUSED 127.0.0.1:3306
+2026-05-05 18:45:05 Connected to Redis
+2026-05-05 18:45:05 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:05     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:05   errno: -111,
+2026-05-05 18:45:05   code: 'ECONNREFUSED',
+2026-05-05 18:45:05   syscall: 'connect',
+2026-05-05 18:45:05   address: '127.0.0.1',
+2026-05-05 18:45:05   port: 6379
+2026-05-05 18:45:05 }
+2026-05-05 18:45:06 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:06     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:06   errno: -111,
+2026-05-05 18:45:06   code: 'ECONNREFUSED',
+2026-05-05 18:45:06   syscall: 'connect',
+2026-05-05 18:45:06   address: '127.0.0.1',
+2026-05-05 18:45:06   port: 6379
+2026-05-05 18:45:06 }
+2026-05-05 18:45:07 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:07     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:07   errno: -111,
+2026-05-05 18:45:07   code: 'ECONNREFUSED',
+2026-05-05 18:45:07   syscall: 'connect',
+2026-05-05 18:45:07   address: '127.0.0.1',
+2026-05-05 18:45:07   port: 6379
+2026-05-05 18:45:07 }
+2026-05-05 18:45:08 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:08     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:08   errno: -111,
+2026-05-05 18:45:08   code: 'ECONNREFUSED',
+2026-05-05 18:45:08   syscall: 'connect',
+2026-05-05 18:45:08   address: '127.0.0.1',
+2026-05-05 18:45:08   port: 6379
+2026-05-05 18:45:08 }
+2026-05-05 18:45:10 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:10     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:10   errno: -111,
+2026-05-05 18:45:10   code: 'ECONNREFUSED',
+2026-05-05 18:45:10   syscall: 'connect',
+2026-05-05 18:45:10   address: '127.0.0.1',
+2026-05-05 18:45:10   port: 6379
+2026-05-05 18:45:10 }
+2026-05-05 18:45:10 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:10     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:10   errno: -111,
+2026-05-05 18:45:10   code: 'ECONNREFUSED',
+2026-05-05 18:45:10   syscall: 'connect',
+2026-05-05 18:45:10   address: '127.0.0.1',
+2026-05-05 18:45:10   port: 6379
+2026-05-05 18:45:10 }
+2026-05-05 18:45:12 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:12     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:12   errno: -111,
+2026-05-05 18:45:12   code: 'ECONNREFUSED',
+2026-05-05 18:45:12   syscall: 'connect',
+2026-05-05 18:45:12   address: '127.0.0.1',
+2026-05-05 18:45:12   port: 6379
+2026-05-05 18:45:12 }
+2026-05-05 18:45:14 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:14     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:14   errno: -111,
+2026-05-05 18:45:14   code: 'ECONNREFUSED',
+2026-05-05 18:45:14   syscall: 'connect',
+2026-05-05 18:45:14   address: '127.0.0.1',
+2026-05-05 18:45:14   port: 6379
+2026-05-05 18:45:14 }
+2026-05-05 18:45:17 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:17     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:17   errno: -111,
+2026-05-05 18:45:17   code: 'ECONNREFUSED',
+2026-05-05 18:45:17   syscall: 'connect',
+2026-05-05 18:45:17   address: '127.0.0.1',
+2026-05-05 18:45:17   port: 6379
+2026-05-05 18:45:17 }
+2026-05-05 18:45:19 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:19     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:19   errno: -111,
+2026-05-05 18:45:19   code: 'ECONNREFUSED',
+2026-05-05 18:45:19   syscall: 'connect',
+2026-05-05 18:45:19   address: '127.0.0.1',
+2026-05-05 18:45:19   port: 6379
+2026-05-05 18:45:19 }
+2026-05-05 18:45:21 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:21     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:21   errno: -111,
+2026-05-05 18:45:21   code: 'ECONNREFUSED',
+2026-05-05 18:45:21   syscall: 'connect',
+2026-05-05 18:45:21   address: '127.0.0.1',
+2026-05-05 18:45:21   port: 6379
+2026-05-05 18:45:21 }
+2026-05-05 18:45:23 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:23     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:23   errno: -111,
+2026-05-05 18:45:23   code: 'ECONNREFUSED',
+2026-05-05 18:45:23   syscall: 'connect',
+2026-05-05 18:45:23   address: '127.0.0.1',
+2026-05-05 18:45:23   port: 6379
+2026-05-05 18:45:23 }
+2026-05-05 18:45:25 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:25     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:25   errno: -111,
+2026-05-05 18:45:25   code: 'ECONNREFUSED',
+2026-05-05 18:45:25   syscall: 'connect',
+2026-05-05 18:45:25   address: '127.0.0.1',
+2026-05-05 18:45:25   port: 6379
+2026-05-05 18:45:25 }
+2026-05-05 18:45:27 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:27     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:27   errno: -111,
+2026-05-05 18:45:27   code: 'ECONNREFUSED',
+2026-05-05 18:45:27   syscall: 'connect',
+2026-05-05 18:45:27   address: '127.0.0.1',
+2026-05-05 18:45:27   port: 6379
+2026-05-05 18:45:27 }
+2026-05-05 18:45:29 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:29     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:29   errno: -111,
+2026-05-05 18:45:29   code: 'ECONNREFUSED',
+2026-05-05 18:45:29   syscall: 'connect',
+2026-05-05 18:45:29   address: '127.0.0.1',
+2026-05-05 18:45:29   port: 6379
+2026-05-05 18:45:29 }
+2026-05-05 18:45:31 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:31     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:31   errno: -111,
+2026-05-05 18:45:31   code: 'ECONNREFUSED',
+2026-05-05 18:45:31   syscall: 'connect',
+2026-05-05 18:45:31   address: '127.0.0.1',
+2026-05-05 18:45:31   port: 6379
+2026-05-05 18:45:31 }
+2026-05-05 18:45:33 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:33     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:33   errno: -111,
+2026-05-05 18:45:33   code: 'ECONNREFUSED',
+2026-05-05 18:45:33   syscall: 'connect',
+2026-05-05 18:45:33   address: '127.0.0.1',
+2026-05-05 18:45:33   port: 6379
+2026-05-05 18:45:33 }
+2026-05-05 18:45:35 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:35     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:35   errno: -111,
+2026-05-05 18:45:35   code: 'ECONNREFUSED',
+2026-05-05 18:45:35   syscall: 'connect',
+2026-05-05 18:45:35   address: '127.0.0.1',
+2026-05-05 18:45:35   port: 6379
+2026-05-05 18:45:35 }
+2026-05-05 18:45:37 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:37     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:37   errno: -111,
+2026-05-05 18:45:37   code: 'ECONNREFUSED',
+2026-05-05 18:45:37   syscall: 'connect',
+2026-05-05 18:45:37   address: '127.0.0.1',
+2026-05-05 18:45:37   port: 6379
+2026-05-05 18:45:37 }
+2026-05-05 18:45:40 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:40     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:40   errno: -111,
+2026-05-05 18:45:40   code: 'ECONNREFUSED',
+2026-05-05 18:45:40   syscall: 'connect',
+2026-05-05 18:45:40   address: '127.0.0.1',
+2026-05-05 18:45:40   port: 6379
+2026-05-05 18:45:40 }
+2026-05-05 18:45:42 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:42     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:42   errno: -111,
+2026-05-05 18:45:42   code: 'ECONNREFUSED',
+2026-05-05 18:45:42   syscall: 'connect',
+2026-05-05 18:45:42   address: '127.0.0.1',
+2026-05-05 18:45:42   port: 6379
+2026-05-05 18:45:42 }
+2026-05-05 18:45:43 GET 200 https://shareplate-app-883918498227.us-central1.run.app/
+2026-05-05 18:45:44 GET 200 https://shareplate-app-883918498227.us-central1.run.app/assets/index-DnO3ufx5.js
+2026-05-05 18:45:44 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:44     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:44   errno: -111,
+2026-05-05 18:45:44   code: 'ECONNREFUSED',
+2026-05-05 18:45:44   syscall: 'connect',
+2026-05-05 18:45:44   address: '127.0.0.1',
+2026-05-05 18:45:44   port: 6379
+2026-05-05 18:45:44 }
+2026-05-05 18:45:44 GET 200 https://shareplate-app-883918498227.us-central1.run.app/assets/index-D6JjSSk1.css
+2026-05-05 18:45:45 GET 200 https://shareplate-app-883918498227.us-central1.run.app/ngo.png
+2026-05-05 18:45:45 GET 500 https://shareplate-app-883918498227.us-central1.run.app/api/reviews
+2026-05-05 18:45:45 Error fetching reviews: Error: connect ECONNREFUSED 127.0.0.1:3306
+2026-05-05 18:45:45     at getReviews (/app/src/controllers/reviewController.js:15:34)
+2026-05-05 18:45:45     at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+2026-05-05 18:45:45     at next (/app/node_modules/router/lib/route.js:157:13)
+2026-05-05 18:45:45     at Route.dispatch (/app/node_modules/router/lib/route.js:117:3)
+2026-05-05 18:45:45     at handle (/app/node_modules/router/index.js:435:11)
+2026-05-05 18:45:45     at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+2026-05-05 18:45:45     at /app/node_modules/router/index.js:295:15
+2026-05-05 18:45:45     at processParams (/app/node_modules/router/index.js:582:12)
+2026-05-05 18:45:45     at next (/app/node_modules/router/index.js:291:5)
+2026-05-05 18:45:45     at Function.handle (/app/node_modules/router/index.js:186:3) {
+2026-05-05 18:45:45   errno: -111,
+2026-05-05 18:45:45   code: 'ECONNREFUSED',
+2026-05-05 18:45:45   syscall: 'connect',
+2026-05-05 18:45:45   address: '127.0.0.1',
+2026-05-05 18:45:45   port: 3306,
+2026-05-05 18:45:45   fatal: true
+2026-05-05 18:45:45 }
+2026-05-05 18:45:46 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:46     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:46   errno: -111,
+2026-05-05 18:45:46   code: 'ECONNREFUSED',
+2026-05-05 18:45:46   syscall: 'connect',
+2026-05-05 18:45:46   address: '127.0.0.1',
+2026-05-05 18:45:46   port: 6379
+2026-05-05 18:45:46 }
+2026-05-05 18:45:48 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:48     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:48   errno: -111,
+2026-05-05 18:45:48   code: 'ECONNREFUSED',
+2026-05-05 18:45:48   syscall: 'connect',
+2026-05-05 18:45:48   address: '127.0.0.1',
+2026-05-05 18:45:48   port: 6379
+2026-05-05 18:45:48 }
+2026-05-05 18:45:49 POST 500 https://shareplate-app-883918498227.us-central1.run.app/api/auth/login
+2026-05-05 18:45:49 Login error: Error: connect ECONNREFUSED 127.0.0.1:3306
+2026-05-05 18:45:49     at login (/app/src/controllers/authController.js:15:32)
+2026-05-05 18:45:49     at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+2026-05-05 18:45:49     at next (/app/node_modules/router/lib/route.js:157:13)
+2026-05-05 18:45:49     at Route.dispatch (/app/node_modules/router/lib/route.js:117:3)
+2026-05-05 18:45:49     at handle (/app/node_modules/router/index.js:435:11)
+2026-05-05 18:45:49     at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+2026-05-05 18:45:49     at /app/node_modules/router/index.js:295:15
+2026-05-05 18:45:49     at processParams (/app/node_modules/router/index.js:582:12)
+2026-05-05 18:45:49     at next (/app/node_modules/router/index.js:291:5)
+2026-05-05 18:45:49     at Function.handle (/app/node_modules/router/index.js:186:3) {
+2026-05-05 18:45:49   errno: -111,
+2026-05-05 18:45:49   code: 'ECONNREFUSED',
+2026-05-05 18:45:49   syscall: 'connect',
+2026-05-05 18:45:49   address: '127.0.0.1',
+2026-05-05 18:45:49   port: 3306,
+2026-05-05 18:45:49   fatal: true
+2026-05-05 18:45:49 }
+2026-05-05 18:45:50 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:50     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:50   errno: -111,
+2026-05-05 18:45:50   code: 'ECONNREFUSED',
+2026-05-05 18:45:50   syscall: 'connect',
+2026-05-05 18:45:50   address: '127.0.0.1',
+2026-05-05 18:45:50   port: 6379
+2026-05-05 18:45:50 }
+2026-05-05 18:45:52 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:52     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:52   errno: -111,
+2026-05-05 18:45:52   code: 'ECONNREFUSED',
+2026-05-05 18:45:52   syscall: 'connect',
+2026-05-05 18:45:52   address: '127.0.0.1',
+2026-05-05 18:45:52   port: 6379
+2026-05-05 18:45:52 }
+2026-05-05 18:45:54 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:54     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:54   errno: -111,
+2026-05-05 18:45:54   code: 'ECONNREFUSED',
+2026-05-05 18:45:54   syscall: 'connect',
+2026-05-05 18:45:54   address: '127.0.0.1',
+2026-05-05 18:45:54   port: 6379
+2026-05-05 18:45:54 }
+2026-05-05 18:45:55 POST 500 https://shareplate-app-883918498227.us-central1.run.app/api/auth/login
+2026-05-05 18:45:55 Login error: Error: connect ECONNREFUSED 127.0.0.1:3306
+2026-05-05 18:45:55     at login (/app/src/controllers/authController.js:15:32)
+2026-05-05 18:45:55     at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+2026-05-05 18:45:55     at next (/app/node_modules/router/lib/route.js:157:13)
+2026-05-05 18:45:55     at Route.dispatch (/app/node_modules/router/lib/route.js:117:3)
+2026-05-05 18:45:55     at handle (/app/node_modules/router/index.js:435:11)
+2026-05-05 18:45:55     at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+2026-05-05 18:45:55     at /app/node_modules/router/index.js:295:15
+2026-05-05 18:45:55     at processParams (/app/node_modules/router/index.js:582:12)
+2026-05-05 18:45:55     at next (/app/node_modules/router/index.js:291:5)
+2026-05-05 18:45:55     at Function.handle (/app/node_modules/router/index.js:186:3) {
+2026-05-05 18:45:55   errno: -111,
+2026-05-05 18:45:55   code: 'ECONNREFUSED',
+2026-05-05 18:45:55   syscall: 'connect',
+2026-05-05 18:45:55   address: '127.0.0.1',
+2026-05-05 18:45:55   port: 3306,
+2026-05-05 18:45:55   fatal: true
+2026-05-05 18:45:55 }
+2026-05-05 18:45:56 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:56     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:56   errno: -111,
+2026-05-05 18:45:56   code: 'ECONNREFUSED',
+2026-05-05 18:45:56   syscall: 'connect',
+2026-05-05 18:45:56   address: '127.0.0.1',
+2026-05-05 18:45:56   port: 6379
+2026-05-05 18:45:56 }
+2026-05-05 18:45:58 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:45:58     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:45:58   errno: -111,
+2026-05-05 18:45:58   code: 'ECONNREFUSED',
+2026-05-05 18:45:58   syscall: 'connect',
+2026-05-05 18:45:58   address: '127.0.0.1',
+2026-05-05 18:45:58   port: 6379
+2026-05-05 18:45:58 }
+2026-05-05 18:46:01 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:46:01     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:46:01   errno: -111,
+2026-05-05 18:46:01   code: 'ECONNREFUSED',
+2026-05-05 18:46:01   syscall: 'connect',
+2026-05-05 18:46:01   address: '127.0.0.1',
+2026-05-05 18:46:01   port: 6379
+2026-05-05 18:46:01 }
+2026-05-05 18:46:03 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:46:03     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:46:03   errno: -111,
+2026-05-05 18:46:03   code: 'ECONNREFUSED',
+2026-05-05 18:46:03   syscall: 'connect',
+2026-05-05 18:46:03   address: '127.0.0.1',
+2026-05-05 18:46:03   port: 6379
+2026-05-05 18:46:03 }
+2026-05-05 18:46:05 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:46:05     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:46:05   errno: -111,
+2026-05-05 18:46:05   code: 'ECONNREFUSED',
+2026-05-05 18:46:05   syscall: 'connect',
+2026-05-05 18:46:05   address: '127.0.0.1',
+2026-05-05 18:46:05   port: 6379
+2026-05-05 18:46:05 }
+2026-05-05 18:46:07 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:46:07     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:46:07   errno: -111,
+2026-05-05 18:46:07   code: 'ECONNREFUSED',
+2026-05-05 18:46:07   syscall: 'connect',
+2026-05-05 18:46:07   address: '127.0.0.1',
+2026-05-05 18:46:07   port: 6379
+2026-05-05 18:46:07 }
+2026-05-05 18:46:09 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:46:09     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:46:09   errno: -111,
+2026-05-05 18:46:09   code: 'ECONNREFUSED',
+2026-05-05 18:46:09   syscall: 'connect',
+2026-05-05 18:46:09   address: '127.0.0.1',
+2026-05-05 18:46:09   port: 6379
+2026-05-05 18:46:09 }
+2026-05-05 18:46:11 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:46:11     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:46:11   errno: -111,
+2026-05-05 18:46:11   code: 'ECONNREFUSED',
+2026-05-05 18:46:11   syscall: 'connect',
+2026-05-05 18:46:11   address: '127.0.0.1',
+2026-05-05 18:46:11   port: 6379
+2026-05-05 18:46:11 }
+2026-05-05 18:46:13 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:46:13     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:46:13   errno: -111,
+2026-05-05 18:46:13   code: 'ECONNREFUSED',
+2026-05-05 18:46:13   syscall: 'connect',
+2026-05-05 18:46:13   address: '127.0.0.1',
+2026-05-05 18:46:13   port: 6379
+2026-05-05 18:46:13 }
+2026-05-05 18:46:16 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:46:16     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:46:16   errno: -111,
+2026-05-05 18:46:16   code: 'ECONNREFUSED',
+2026-05-05 18:46:16   syscall: 'connect',
+2026-05-05 18:46:16   address: '127.0.0.1',
+2026-05-05 18:46:16   port: 6379
+2026-05-05 18:46:16 }
+2026-05-05 18:46:18 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:46:18     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:46:18   errno: -111,
+2026-05-05 18:46:18   code: 'ECONNREFUSED',
+2026-05-05 18:46:18   syscall: 'connect',
+2026-05-05 18:46:18   address: '127.0.0.1',
+2026-05-05 18:46:18   port: 6379
+2026-05-05 18:46:18 }
+2026-05-05 18:46:20 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:46:20     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:46:20   errno: -111,
+2026-05-05 18:46:20   code: 'ECONNREFUSED',
+2026-05-05 18:46:20   syscall: 'connect',
+2026-05-05 18:46:20   address: '127.0.0.1',
+2026-05-05 18:46:20   port: 6379
+2026-05-05 18:46:20 }
+2026-05-05 18:46:22 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:46:22     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:46:22   errno: -111,
+2026-05-05 18:46:22   code: 'ECONNREFUSED',
+2026-05-05 18:46:22   syscall: 'connect',
+2026-05-05 18:46:22   address: '127.0.0.1',
+2026-05-05 18:46:22   port: 6379
+2026-05-05 18:46:22 }
+2026-05-05 18:46:24 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+2026-05-05 18:46:24     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+2026-05-05 18:46:24   errno: -111,
+2026-05-05 18:46:24   code: 'ECONNREFUSED',
+2026-05-05 18:46:24   syscall: 'connect',
+2026-05-05 18:46:24   address: '127.0.0.1',
+2026-05-05 18:46:24   port: 6379
+2026-05-05 18:46:24 }
