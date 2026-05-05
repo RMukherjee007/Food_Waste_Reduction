@@ -1,7 +1,0 @@
-.git
-.gitignore
-node_modules
-client/node_modules
-.env
-README.md
-client/dist
