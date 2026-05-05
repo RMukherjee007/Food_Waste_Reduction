@@ -1,3 +1,4 @@
+import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -8,9 +9,9 @@ import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
 import Accessibility from './pages/Accessibility';
 import ProtectedRoute from './components/ProtectedRoute';
-import DonorDashboard from './pages/dashboards/DonorDashboard';
-import ReceiverDashboard from './pages/dashboards/ReceiverDashboard';
-import AdminDashboard from './pages/dashboards/AdminDashboard';
+const DonorDashboard = lazy(() => import('./pages/dashboards/DonorDashboard'));
+const ReceiverDashboard = lazy(() => import('./pages/dashboards/ReceiverDashboard'));
+const AdminDashboard = lazy(() => import('./pages/dashboards/AdminDashboard'));
 import { useAuth } from './context/AuthContext';
 import './App.css';
 
@@ -31,21 +32,23 @@ function App() {
       </nav>
 
       {/* Route Views */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/donors" element={<Donors />} />
-        <Route path="/charities" element={<Charities />} />
-        <Route path="/how-to-join" element={<HowToJoin />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/accessibility" element={<Accessibility />} />
-        
-        {/* Protected Dashboards */}
-        <Route path="/donor" element={<ProtectedRoute allowedRoles={['Restaurant']}><DonorDashboard /></ProtectedRoute>} />
-        <Route path="/receiver" element={<ProtectedRoute allowedRoles={['Charity']}><ReceiverDashboard /></ProtectedRoute>} />
-        <Route path="/admin" element={<ProtectedRoute allowedRoles={['Admin']}><AdminDashboard /></ProtectedRoute>} />
-      </Routes>
+      <Suspense fallback={<div style={{ padding: '100px 40px', textAlign: 'center' }}>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/donors" element={<Donors />} />
+          <Route path="/charities" element={<Charities />} />
+          <Route path="/how-to-join" element={<HowToJoin />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/accessibility" element={<Accessibility />} />
+          
+          {/* Protected Dashboards */}
+          <Route path="/donor" element={<ProtectedRoute allowedRoles={['Restaurant']}><DonorDashboard /></ProtectedRoute>} />
+          <Route path="/receiver" element={<ProtectedRoute allowedRoles={['Charity']}><ReceiverDashboard /></ProtectedRoute>} />
+          <Route path="/admin" element={<ProtectedRoute allowedRoles={['Admin']}><AdminDashboard /></ProtectedRoute>} />
+        </Routes>
+      </Suspense>
 
       {/* Shared Footer */}
       <footer className="footer-section">

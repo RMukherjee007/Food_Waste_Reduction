@@ -64,6 +64,28 @@ function Home() {
   const averageRating = reviews.length > 0 ? (reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length).toFixed(1) : 0;
   const reviewCount = reviews.length;
 
+  const loginBox = (
+    <div className="quote-form-container">
+      <h3 className="form-title">Partner Login</h3>
+      <p style={{ marginBottom: '20px', fontSize: '0.9rem', color: '#666' }}>
+        Enter your User ID to access your dashboard.<br/>
+        (Demo: ID 1=Restaurant, ID 3=Charity)
+      </p>
+      <form onSubmit={handleLogin}>
+        <input 
+          type="text" 
+          className="input-field" 
+          placeholder="Enter User ID (e.g. 1 or 3)" 
+          value={userId} 
+          onChange={(e) => setUserId(e.target.value)} 
+          required 
+        />
+        <button type="submit" className="btn-dark">Log In</button>
+        {loginError && <div className="status-message status-error" style={{marginTop: '15px'}}>{loginError}</div>}
+      </form>
+    </div>
+  );
+
   return (
     <>
       {/* Header Section */}
@@ -90,27 +112,16 @@ function Home() {
             </div>
             <div style={{ fontSize: '0.8rem', color: 'var(--color-text-dark)' }}>Based on {reviewCount} Rescues</div>
           </div>
+
+          {/* Mobile Login Box placed directly under Hero Review Box */}
+          <div className="mobile-login" style={{ marginTop: '20px', width: '100%', maxWidth: '450px' }}>
+            {loginBox}
+          </div>
         </div>
 
-        {/* Login Form embedded in Hero */}
-        <div className="quote-form-container">
-          <h3 className="form-title">Partner Login</h3>
-          <p style={{ marginBottom: '20px', fontSize: '0.9rem', color: '#666' }}>
-            Enter your User ID to access your dashboard.<br/>
-            (Demo: ID 1=Restaurant, ID 3=Charity)
-          </p>
-          <form onSubmit={handleLogin}>
-            <input 
-              type="text" 
-              className="input-field" 
-              placeholder="Enter User ID (e.g. 1 or 3)" 
-              value={userId} 
-              onChange={(e) => setUserId(e.target.value)} 
-              required 
-            />
-            <button type="submit" className="btn-dark">Log In</button>
-            {loginError && <div className="status-message status-error" style={{marginTop: '15px'}}>{loginError}</div>}
-          </form>
+        {/* Login Form embedded in Hero (Desktop Only) */}
+        <div className="desktop-login">
+          {loginBox}
         </div>
       </section>
 
@@ -172,6 +183,7 @@ function Home() {
             {reviewStatus && <p style={{marginTop: '15px'}}>{reviewStatus}</p>}
           </form>
         </div>
+
       </section>
       
       {/* Logos Section */}

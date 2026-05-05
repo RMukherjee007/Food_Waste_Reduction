@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const compression = require('compression');
 require('dotenv').config();
 
 const { globalLimiter } = require('./middleware/rateLimiter');
@@ -18,6 +19,7 @@ const PORT = process.env.PORT || 5001;
 app.set('trust proxy', 1);
 
 // Middleware
+app.use(compression());
 app.use(cors());
 app.use(express.json());
 
@@ -32,8 +34,8 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 
-// Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, '../client/dist')));
+// Serve static files from the React frontend app with caching
+app.use(express.static(path.join(__dirname, '../client/dist'), { maxAge: '1y' }));
 
 // Health Check
 app.get('/health', (req, res) => {

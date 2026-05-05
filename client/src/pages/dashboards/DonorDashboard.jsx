@@ -79,7 +79,7 @@ export default function DonorDashboard() {
       <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap' }}>
         
         {/* Post Form */}
-        <div className="quote-form-container" style={{ position: 'relative', right: '0', bottom: '0', flex: '1 1 400px' }}>
+        <div className="quote-form-container" style={{ position: 'relative', right: '0', bottom: '0', flex: '1 1 300px', maxWidth: '100%', boxSizing: 'border-box' }}>
           <h3 className="form-title">Post Surplus Food</h3>
           <p style={{fontSize: '0.9rem', color: '#555', marginBottom: '20px'}}>
             Please confirm your pickup details below.
@@ -112,14 +112,14 @@ export default function DonorDashboard() {
         </div>
 
         {/* Pending Requests & Listings */}
-        <div style={{ flex: '1 1 400px', display: 'flex', flexDirection: 'column', gap: '30px' }}>
+        <div style={{ flex: '1 1 300px', maxWidth: '100%', display: 'flex', flexDirection: 'column', gap: '30px' }}>
           
           <div style={{ backgroundColor: 'white', padding: '30px', boxShadow: '0 10px 30px rgba(0,0,0,0.05)', borderRadius: '8px' }}>
             <h3 className="form-title">Incoming Requests</h3>
             {pendingRequests.length === 0 ? <p>No pending requests.</p> : pendingRequests.map(r => (
               <div key={r.claim_id} style={{ padding: '15px', border: '1px solid #eab308', backgroundColor: '#fefce8', marginBottom: '10px', borderRadius: '4px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div style={{ flex: '1 1 200px' }}>
                     <strong>{r.description}</strong> ({r.weight_kg} kg)<br/>
                     Requested by: <strong>{r.charity_name}</strong><br/>
                     Charity Address: {r.charity_address}

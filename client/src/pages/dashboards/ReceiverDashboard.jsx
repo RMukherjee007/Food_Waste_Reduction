@@ -80,15 +80,15 @@ export default function ReceiverDashboard() {
       <p style={{marginBottom: '20px'}}>Welcome back, {user?.name}.</p>
       
       {/* City Search Bar */}
-      <div style={{ marginBottom: '30px', display: 'flex', gap: '15px', alignItems: 'center' }}>
+      <div style={{ marginBottom: '30px', display: 'flex', gap: '15px', alignItems: 'center', flexWrap: 'wrap' }}>
         <span>Find food in your city:</span>
-        <form onSubmit={handleSearch} style={{ display: 'flex', gap: '10px' }}>
+        <form onSubmit={handleSearch} style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
           <input 
             type="text" 
             className="input-field" 
             value={searchInput} 
             onChange={e => setSearchInput(e.target.value)} 
-            style={{ width: '250px', marginBottom: 0 }} 
+            style={{ width: '100%', maxWidth: '250px', marginBottom: 0 }} 
             placeholder="Enter City (Optional)" 
           />
           <button type="submit" className="btn-primary" style={{ padding: '10px 20px', width: 'auto' }}>Search</button>
@@ -100,10 +100,10 @@ export default function ReceiverDashboard() {
       <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap' }}>
         
         {/* Available Food */}
-        <div style={{ flex: '1 1 500px' }}>
+        <div style={{ flex: '1 1 300px', maxWidth: '100%' }}>
           <div style={{ backgroundColor: 'var(--color-light-tan)', padding: '20px', borderRadius: '8px', marginBottom: '20px' }}>
             <h4 style={{ marginBottom: '10px' }}>Confirm Your Pickup Details</h4>
-            <div style={{ display: 'flex', gap: '10px' }}>
+            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
               <input type="text" className="input-field" placeholder="Charity Name" value={charityName} onChange={e => setCharityName(e.target.value)} style={{ marginBottom: 0 }} />
               <input type="text" className="input-field" placeholder="Your Address" value={charityAddress} onChange={e => setCharityAddress(e.target.value)} style={{ marginBottom: 0 }} />
             </div>
@@ -126,7 +126,7 @@ export default function ReceiverDashboard() {
         </div>
 
         {/* My Claims / Tickets */}
-        <div style={{ flex: '1 1 400px' }}>
+        <div style={{ flex: '1 1 300px', maxWidth: '100%' }}>
           <div style={{ backgroundColor: 'var(--color-light-tan)', padding: '30px', borderRadius: '8px' }}>
             <h3 className="form-title">My Tickets</h3>
             <p style={{marginBottom: '20px', color: '#555'}}>Check the status of your requests here.</p>
