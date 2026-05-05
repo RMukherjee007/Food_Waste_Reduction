@@ -8,10 +8,10 @@ async function seedDatabase() {
     // Central point: 40.7306, -73.9352
     console.log('Inserting Users...');
     await pool.execute(`
-      INSERT INTO Users (role, name, address, latitude, longitude) VALUES
-      ('Restaurant', 'Green Apple Bistro', '123 Apple St, NY', 40.730610, -73.935242),
-      ('Restaurant', 'The Daily Loaf', '456 Bread Blvd, NY', 40.748817, -73.985428),
-      ('Charity', 'Hope Food Bank', '789 Charity Ln, NY', 40.730000, -73.950000)
+      INSERT INTO Users (role, name, address, base_city) VALUES
+      ('Restaurant', 'Green Apple Bistro', '123 Apple St, NY', 'New York'),
+      ('Restaurant', 'The Daily Loaf', '456 Bread Blvd, NY', 'New York'),
+      ('Charity', 'Hope Food Bank', '789 Charity Ln, NY', 'New York')
     `);
 
     // 2. Insert Dietary Tags

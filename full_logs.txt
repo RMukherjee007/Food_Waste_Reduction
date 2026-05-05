@@ -1,107 +1,3 @@
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Compressed tables use zlib 1.3.2
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Number of transaction pools: 1
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Using Linux native AIO
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: innodb_buffer_pool_size_max=128m, innodb_buffer_pool_size=128m
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Completed initialization of buffer pool
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Buffered log writes (block size=512 bytes)
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: End of log at LSN=45125
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Opened 3 undo tablespaces
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: 128 rollback segments in 3 undo tablespaces are active.
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: log sequence number 45125; transaction id 14
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] Plugin 'FEEDBACK' is disabled.
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] Plugin 'wsrep-provider' is disabled.
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
-2026-05-05 18:44:59 2026-05-05 18:44:59 0 [Note] InnoDB: Buffer pool(s) load completed at 260505 18:44:59
-2026-05-05 18:45:00 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
-2026-05-05 18:45:00     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
-2026-05-05 18:45:00   errno: -111,
-2026-05-05 18:45:00   code: 'ECONNREFUSED',
-2026-05-05 18:45:00   syscall: 'connect',
-2026-05-05 18:45:00   address: '127.0.0.1',
-2026-05-05 18:45:00   port: 6379
-2026-05-05 18:45:00 }
-2026-05-05 18:45:00 2026-05-05 18:45:00 0 [Note] mysqld: Event Scheduler: Loaded 0 events
-2026-05-05 18:45:00 2026-05-05 18:45:00 0 [Note] mysqld: ready for connections.
-2026-05-05 18:45:00 Version: '11.4.10-MariaDB'  socket: '/run/mysqld/mysqld.sock'  port: 0  Alpine Linux
-2026-05-05 18:45:00 mysqladmin: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb-admin' instead
-2026-05-05 18:45:00 mysqld is alive
-2026-05-05 18:45:00 Setting up Database...
-2026-05-05 18:45:00 mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
-2026-05-05 18:45:00 mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
-2026-05-05 18:45:00 mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
-2026-05-05 18:45:00 Importing Schema...
-2026-05-05 18:45:00 mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
-2026-05-05 18:45:01 --------------
-2026-05-05 18:45:01 SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '11ac9576-fc10-11f0-91d1-92e0acbfb85d:1-333'
-2026-05-05 18:45:01 --------------
-2026-05-05 18:45:01 ERROR 1193 (HY000) at line 24: Unknown system variable 'GTID_PURGED'
-2026-05-05 18:45:01 Seeding Database...
-2026-05-05 18:45:01 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
-2026-05-05 18:45:01     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
-2026-05-05 18:45:01   errno: -111,
-2026-05-05 18:45:01   code: 'ECONNREFUSED',
-2026-05-05 18:45:01   syscall: 'connect',
-2026-05-05 18:45:01   address: '127.0.0.1',
-2026-05-05 18:45:01   port: 6379
-2026-05-05 18:45:01 }
-2026-05-05 18:45:02 ◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
-2026-05-05 18:45:02 Starting Database Seeding...
-2026-05-05 18:45:02 Inserting Users...
-2026-05-05 18:45:02 Failed to connect to MySQL Database: connect ECONNREFUSED 127.0.0.1:3306
-2026-05-05 18:45:02  Seeding Error: Error: connect ECONNREFUSED 127.0.0.1:3306
-2026-05-05 18:45:02     at seedDatabase (/app/src/scripts/seed.js:10:16)
-2026-05-05 18:45:02     at Object.<anonymous> (/app/src/scripts/seed.js:67:1)
-2026-05-05 18:45:02     at Module._compile (node:internal/modules/cjs/loader:1705:14)
-2026-05-05 18:45:02     at Object..js (node:internal/modules/cjs/loader:1838:10)
-2026-05-05 18:45:02     at Module.load (node:internal/modules/cjs/loader:1441:32)
-2026-05-05 18:45:02     at Function._load (node:internal/modules/cjs/loader:1263:12)
-2026-05-05 18:45:02     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
-2026-05-05 18:45:02     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
-2026-05-05 18:45:02     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
-2026-05-05 18:45:02     at node:internal/main/run_main_module:36:49 {
-2026-05-05 18:45:02   errno: -111,
-2026-05-05 18:45:02   code: 'ECONNREFUSED',
-2026-05-05 18:45:02   syscall: 'connect',
-2026-05-05 18:45:02   address: '127.0.0.1',
-2026-05-05 18:45:02   port: 3306,
-2026-05-05 18:45:02   fatal: true
-2026-05-05 18:45:02 }
-2026-05-05 18:45:02 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
-2026-05-05 18:45:02     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
-2026-05-05 18:45:02   errno: -111,
-2026-05-05 18:45:02 Starting Node.js Application...
-2026-05-05 18:45:02   code: 'ECONNREFUSED',
-2026-05-05 18:45:02   syscall: 'connect',
-2026-05-05 18:45:02   address: '127.0.0.1',
-2026-05-05 18:45:02   port: 6379
-2026-05-05 18:45:02 }
-2026-05-05 18:45:02 > food_waste_project@1.0.0 start
-2026-05-05 18:45:02 > node src/server.js
-2026-05-05 18:45:03 ◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
-2026-05-05 18:45:03 ◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
-2026-05-05 18:45:03 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
-2026-05-05 18:45:03     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
-2026-05-05 18:45:03   errno: -111,
-2026-05-05 18:45:03   code: 'ECONNREFUSED',
-2026-05-05 18:45:03   syscall: 'connect',
-2026-05-05 18:45:03   address: '127.0.0.1',
-2026-05-05 18:45:03   port: 6379
-2026-05-05 18:45:03 }
-2026-05-05 18:45:04 Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
-2026-05-05 18:45:04     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
-2026-05-05 18:45:04   errno: -111,
-2026-05-05 18:45:04   code: 'ECONNREFUSED',
-2026-05-05 18:45:04   syscall: 'connect',
-2026-05-05 18:45:04   address: '127.0.0.1',
-2026-05-05 18:45:04   port: 6379
-2026-05-05 18:45:04 }
-2026-05-05 18:45:05 ◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
-2026-05-05 18:45:05    Server is running on http://localhost:8080
-2026-05-05 18:45:05    Rate Limiting: 100 req / 15 min
-2026-05-05 18:45:05    MySQL Connectivity: Pool Initialized
 2026-05-05 18:45:05    Redis: Client Initialized
 2026-05-05 18:45:05   
 2026-05-05 18:45:05 Failed to connect to MySQL Database: connect ECONNREFUSED 127.0.0.1:3306
@@ -495,3 +391,103 @@
 2026-05-05 18:46:24   address: '127.0.0.1',
 2026-05-05 18:46:24   port: 6379
 2026-05-05 18:46:24 }
+2026-05-05 18:52:55 Starting Redis...
+2026-05-05 18:52:55 Initializing MariaDB...
+2026-05-05 18:52:55 /usr/bin/mysql_install_db: Deprecated program name. It will be removed in a future release, use 'mariadb-install-db' instead
+2026-05-05 18:52:55 3:C 05 May 2026 18:52:55.517 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+2026-05-05 18:52:55 3:C 05 May 2026 18:52:55.518 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+2026-05-05 18:52:55 3:C 05 May 2026 18:52:55.518 * Redis version=8.4.2, bits=64, commit=00000000, modified=1, pid=3, just started
+2026-05-05 18:52:55 3:C 05 May 2026 18:52:55.518 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+2026-05-05 18:52:55 3:M 05 May 2026 18:52:55.520 * monotonic clock: POSIX clock_gettime
+2026-05-05 18:52:55 3:M 05 May 2026 18:52:55.523 * Running mode=standalone, port=6379.
+2026-05-05 18:52:55 3:M 05 May 2026 18:52:55.526 * Server initialized
+2026-05-05 18:52:55 3:M 05 May 2026 18:52:55.527 * Ready to accept connections tcp
+2026-05-05 18:52:57 Starting MariaDB...
+2026-05-05 18:52:57 Waiting for MariaDB to be ready...
+2026-05-05 18:52:57 mysqld: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadbd' instead
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] Starting MariaDB 11.4.10-MariaDB source revision 054a893f1645b77e52a329a7fc8cf614eebd1fad server_uid Gce1+HoeSyhDSw4puJ8oU058fek= as process 50
+2026-05-05 18:52:57 mysqladmin: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb-admin' instead
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: Compressed tables use zlib 1.3.2
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: Using transactional memory
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: Number of transaction pools: 1
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: Using Linux native AIO
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: innodb_buffer_pool_size_max=128m, innodb_buffer_pool_size=128m
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: Completed initialization of buffer pool
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: Buffered log writes (block size=512 bytes)
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: End of log at LSN=45125
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: Opened 3 undo tablespaces
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: 128 rollback segments in 3 undo tablespaces are active.
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: log sequence number 45125; transaction id 14
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] Plugin 'FEEDBACK' is disabled.
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] Plugin 'wsrep-provider' is disabled.
+2026-05-05 18:52:57 2026-05-05 18:52:57 0 [Note] InnoDB: Buffer pool(s) load completed at 260505 18:52:57
+2026-05-05 18:52:58 mysqladmin: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb-admin' instead
+2026-05-05 18:52:58 2026-05-05 18:52:58 0 [Note] Server socket created on IP: '0.0.0.0', port: '3306'.
+2026-05-05 18:52:58 2026-05-05 18:52:58 0 [Note] Server socket created on IP: '::', port: '3306'.
+2026-05-05 18:52:58 2026-05-05 18:52:58 0 [Note] mysqld: Event Scheduler: Loaded 0 events
+2026-05-05 18:52:58 2026-05-05 18:52:58 0 [Note] mysqld: ready for connections.
+2026-05-05 18:52:58 Version: '11.4.10-MariaDB'  socket: '/run/mysqld/mysqld.sock'  port: 3306  Alpine Linux
+2026-05-05 18:52:59 mysqladmin: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb-admin' instead
+2026-05-05 18:52:59 2026-05-05 18:52:59 3 [Warning] Access denied for user 'root'@'localhost'
+2026-05-05 18:52:59 Setting up Database...
+2026-05-05 18:52:59 mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+2026-05-05 18:52:59 mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+2026-05-05 18:52:59 mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+2026-05-05 18:52:59 Importing Schema...
+2026-05-05 18:52:59 mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+2026-05-05 18:53:00 Seeding Database...
+2026-05-05 18:53:01 ◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+2026-05-05 18:53:01 Starting Database Seeding...
+2026-05-05 18:53:01 Inserting Users...
+2026-05-05 18:53:01 Successfully connected to MySQL Database!
+2026-05-05 18:53:01  Seeding Error: Error: Unknown column 'latitude' in 'INSERT INTO'
+2026-05-05 18:53:01     at seedDatabase (/app/src/scripts/seed.js:10:16)
+2026-05-05 18:53:01     at Object.<anonymous> (/app/src/scripts/seed.js:67:1)
+2026-05-05 18:53:01     at Module._compile (node:internal/modules/cjs/loader:1705:14)
+2026-05-05 18:53:01     at Object..js (node:internal/modules/cjs/loader:1838:10)
+2026-05-05 18:53:01     at Module.load (node:internal/modules/cjs/loader:1441:32)
+2026-05-05 18:53:01     at Function._load (node:internal/modules/cjs/loader:1263:12)
+2026-05-05 18:53:01     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+2026-05-05 18:53:01     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+2026-05-05 18:53:01     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+2026-05-05 18:53:01     at node:internal/main/run_main_module:36:49 {
+2026-05-05 18:53:01   code: 'ER_BAD_FIELD_ERROR',
+2026-05-05 18:53:01   errno: 1054,
+2026-05-05 18:53:01   sqlState: '42S22',
+2026-05-05 18:53:01   sqlMessage: "Unknown column 'latitude' in 'INSERT INTO'",
+2026-05-05 18:53:01   sql: '\n' +
+2026-05-05 18:53:01     '      INSERT INTO Users (role, name, address, latitude, longitude) VALUES\n' +
+2026-05-05 18:53:01     "      ('Restaurant', 'Green Apple Bistro', '123 Apple St, NY', 40.730610, -73.935242),\n" +
+2026-05-05 18:53:01     "      ('Restaurant', 'The Daily Loaf', '456 Bread Blvd, NY', 40.748817, -73.985428),\n" +
+2026-05-05 18:53:01     "      ('Charity', 'Hope Food Bank', '789 Charity Ln, NY', 40.730000, -73.950000)\n" +
+2026-05-05 18:53:01     '    '
+2026-05-05 18:53:01 }
+2026-05-05 18:53:01 Starting Node.js Application...
+2026-05-05 18:53:01 2026-05-05 18:53:01 8 [Warning] Aborted connection 8 to db: 'food_waste_redistribution_platform' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2026-05-05 18:53:01 2026-05-05 18:53:01 9 [Warning] Aborted connection 9 to db: 'food_waste_redistribution_platform' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2026-05-05 18:53:02 > food_waste_project@1.0.0 start
+2026-05-05 18:53:02 > node src/server.js
+2026-05-05 18:53:02 ◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+2026-05-05 18:53:03 ◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+2026-05-05 18:53:04 ◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+2026-05-05 18:53:04    Server is running on http://localhost:8080
+2026-05-05 18:53:04    Rate Limiting: 100 req / 15 min
+2026-05-05 18:53:04    MySQL Connectivity: Pool Initialized
+2026-05-05 18:53:04    Redis: Client Initialized
+2026-05-05 18:53:04   
+2026-05-05 18:53:04 Connected to Redis
+2026-05-05 18:53:04 Successfully connected to MySQL Database!
+2026-05-05 18:53:41 GET 200 https://shareplate-app-883918498227.us-central1.run.app/
+2026-05-05 18:53:41 GET 200 https://shareplate-app-883918498227.us-central1.run.app/api/reviews
+2026-05-05 18:53:46 POST 401 https://shareplate-app-883918498227.us-central1.run.app/api/auth/login
+2026-05-05 18:53:51 POST 401 https://shareplate-app-883918498227.us-central1.run.app/api/auth/login
+2026-05-05 18:54:07 POST 401 https://shareplate-app-883918498227.us-central1.run.app/api/auth/login
+2026-05-05 18:56:07 GET 200 https://shareplate-app-883918498227.us-central1.run.app/favicon.svg
+2026-05-05 18:56:07 GET 200 https://shareplate-app-883918498227.us-central1.run.app/apple-touch-icon-precomposed.png
+2026-05-05 18:56:07 GET 200 https://shareplate-app-883918498227.us-central1.run.app/apple-touch-icon.png
+2026-05-05 18:56:07 GET 200 https://shareplate-app-883918498227.us-central1.run.app/favicon.ico
+2026-05-05 18:56:15 GET 200 https://shareplate-app-883918498227.us-central1.run.app/api/reviews
