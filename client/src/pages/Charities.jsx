@@ -8,9 +8,9 @@ export default function Charities() {
       <div style={{ backgroundColor: 'var(--color-dark-brown)', color: 'white', padding: '40px' }}>
         <h3 style={{ marginBottom: '20px' }}>How It Works for Receivers</h3>
         <ul style={{ lineHeight: '2', fontSize: '1.1rem', marginLeft: '20px' }}>
-          <li><strong>Live Map:</strong> See all available food batches within a 10km radius.</li>
-          <li><strong>Instant Claims:</strong> Reserve food with one click. Our system guarantees no double-bookings.</li>
-          <li><strong>Direct Pickup:</strong> Get the exact address and pickup instructions immediately.</li>
+          <li><strong>City Search:</strong> See all available food batches in your delivery city instantly.</li>
+          <li><strong>Instant Claims:</strong> Reserve food with a simple two-step request process.</li>
+          <li><strong>Direct Pickup:</strong> Get the exact address and pickup instructions immediately upon approval.</li>
           <li><strong>Reliable Supply:</strong> Access high-quality meals from vetted local restaurants.</li>
         </ul>
       </div>

@@ -10,7 +10,7 @@ const getReviews = async (req, res) => {
       FROM Feedback_Reviews r
       JOIN Users u ON r.reviewer_id = u.user_id
       ORDER BY r.created_at DESC
-      LIMIT 10;
+      LIMIT 5;
     `;
     const [reviews] = await pool.execute(query);
     res.status(200).json(reviews);

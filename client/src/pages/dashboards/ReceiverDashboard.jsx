@@ -1,132 +1,148 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { io } from 'socket.io-client';
-import MapComponent from '../../components/MapComponent';
 
 export default function ReceiverDashboard() {
   const { user, token } = useAuth();
   const [batches, setBatches] = useState([]);
+  const [myClaims, setMyClaims] = useState([]);
   const [msg, setMsg] = useState('');
   
-  // Geolocation states
-  const [location, setLocation] = useState({ lat: 40.730000, lng: -73.950000 }); // Default
-  const [locInput, setLocInput] = useState('40.730000, -73.950000');
+  // Claim details state
+  const [charityName, setCharityName] = useState(user?.name || '');
+  const [charityAddress, setCharityAddress] = useState(user?.address || '');
 
-  const fetchNearby = async (lat, lng) => {
-    const res = await fetch(`/api/batches/nearby?lat=${lat}&lng=${lng}&radius_km=10`);
+  // City search state
+  const [searchInput, setSearchInput] = useState('');
+  const [activeSearchCity, setActiveSearchCity] = useState(''); // Empty means all
+
+  const fetchNearby = async (city) => {
+    // If city is empty, the backend will return all batches
+    const url = city ? `/api/batches/nearby?city=${encodeURIComponent(city)}` : `/api/batches/nearby`;
+    const res = await fetch(url);
     if (res.ok) {
       const data = await res.json();
       setBatches(data.batches || []);
     }
   };
 
-  useEffect(() => { 
-    fetchNearby(location.lat, location.lng); 
-
-    // Setup Socket.IO
-    const socket = io('/', { transports: ['websocket', 'polling'] });
-    socket.on('new_food_posted', (newBatch) => {
-      // Real-time update! Prepend the new batch if it isn't already there
-      setBatches(prev => {
-        if(prev.find(b => b.batch_id === newBatch.batch_id)) return prev;
-        return [newBatch, ...prev];
-      });
-      setMsg(`🔔 New food posted: ${newBatch.description}`);
+  const fetchMyClaims = async () => {
+    const res = await fetch('/api/claims/my-claims', {
+      headers: { 'Authorization': `Bearer ${token}` }
     });
+    if (res.ok) {
+      setMyClaims(await res.json());
+    }
+  };
 
-    return () => socket.disconnect();
-  }, [location.lat, location.lng]);
+  useEffect(() => { 
+    // Initial fetch
+    fetchNearby(activeSearchCity); 
+    fetchMyClaims();
+
+    // Short Polling: Fetch every 5 seconds
+    const interval = setInterval(() => {
+      fetchNearby(activeSearchCity);
+      fetchMyClaims();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [activeSearchCity]);
 
   const requestBatch = async (batchId) => {
+    if (!charityName || !charityAddress) {
+      setMsg('Please fill out your Charity Name and Address before requesting a pickup.');
+      return;
+    }
+
     const res = await fetch('/api/claims/request', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-      body: JSON.stringify({ batch_id: batchId })
+      body: JSON.stringify({ batch_id: batchId, charity_name: charityName, charity_address: charityAddress })
     });
     if (res.ok) {
       setMsg(`Request sent for Batch #${batchId}! Waiting for restaurant approval.`);
-      fetchNearby(location.lat, location.lng);
+      fetchNearby(activeSearchCity);
+      fetchMyClaims();
     } else {
       const data = await res.json();
       setMsg(data.error || 'Failed to request batch.');
     }
   };
 
-  const handleGetLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          const newLat = pos.coords.latitude;
-          const newLng = pos.coords.longitude;
-          setLocation({ lat: newLat, lng: newLng });
-          setLocInput(`${newLat.toFixed(6)}, ${newLng.toFixed(6)}`);
-        },
-        (err) => alert('Geolocation failed or denied. ' + err.message)
-      );
-    } else {
-      alert("Geolocation is not supported by this browser.");
-    }
-  };
-
-  const handleManualLocation = (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
-    const parts = locInput.split(',');
-    if (parts.length === 2) {
-      setLocation({ lat: parseFloat(parts[0]), lng: parseFloat(parts[1]) });
-    }
+    setActiveSearchCity(searchInput);
   };
-
-  // Convert batches to map markers
-  const mapMarkers = batches.map(b => ({
-    id: b.batch_id,
-    lat: b.latitude || location.lat + (Math.random()-0.5)*0.05, // fallback if no lat/lng
-    lng: b.longitude || location.lng + (Math.random()-0.5)*0.05,
-    title: b.donor_name || 'Restaurant',
-    description: b.description
-  }));
 
   return (
     <div className="page-padding">
       <h2 className="features-header">Receiver Dashboard</h2>
-      <p style={{marginBottom: '20px'}}>Welcome back, {user?.name}. Find available food nearby:</p>
+      <p style={{marginBottom: '20px'}}>Welcome back, {user?.name}.</p>
       
-      {/* Geolocation Controls */}
+      {/* City Search Bar */}
       <div style={{ marginBottom: '30px', display: 'flex', gap: '15px', alignItems: 'center' }}>
-        <button onClick={handleGetLocation} className="btn-dark">Use My Location</button>
-        <span>OR Enter coordinates:</span>
-        <form onSubmit={handleManualLocation} style={{ display: 'flex', gap: '10px' }}>
+        <span>Find food in your city:</span>
+        <form onSubmit={handleSearch} style={{ display: 'flex', gap: '10px' }}>
           <input 
             type="text" 
             className="input-field" 
-            value={locInput} 
-            onChange={e => setLocInput(e.target.value)} 
-            style={{ width: '250px' }} 
-            placeholder="Lat, Lng" 
+            value={searchInput} 
+            onChange={e => setSearchInput(e.target.value)} 
+            style={{ width: '250px', marginBottom: 0 }} 
+            placeholder="Enter City (Optional)" 
           />
-          <button type="submit" className="btn-primary" style={{ padding: '10px 20px' }}>Search</button>
+          <button type="submit" className="btn-primary" style={{ padding: '10px 20px', width: 'auto' }}>Search</button>
         </form>
       </div>
 
       {msg && <div className="status-message" style={{marginBottom: '20px'}}>{msg}</div>}
 
-      {/* Interactive Map */}
-      <div style={{ marginBottom: '40px', border: '2px solid var(--color-dark-brown)', borderRadius: '8px', overflow: 'hidden' }}>
-        <MapComponent center={[location.lat, location.lng]} markers={mapMarkers} />
-      </div>
-
-      <h3 className="form-title">Nearby Food Batches</h3>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', marginTop: '20px' }}>
-        {batches.length === 0 ? <p>No food available nearby at the moment.</p> : batches.map(b => (
-          <div key={b.batch_id} style={{ backgroundColor: 'var(--color-light-tan)', padding: '30px' }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>{b.description}</h3>
-            <p style={{ color: '#555', marginBottom: '20px' }}>
-              <strong>Type:</strong> {b.batch_type} <br/>
-              <strong>Weight:</strong> {b.weight_kg} kg <br/>
-              <strong>Distance:</strong> {b.distance_km ? Number(b.distance_km).toFixed(2) : '?'} km away
-            </p>
-            <button onClick={() => requestBatch(b.batch_id)} className="btn-dark" style={{ width: 'auto' }}>Request Pickup</button>
+      <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap' }}>
+        
+        {/* Available Food */}
+        <div style={{ flex: '1 1 500px' }}>
+          <div style={{ backgroundColor: 'var(--color-light-tan)', padding: '20px', borderRadius: '8px', marginBottom: '20px' }}>
+            <h4 style={{ marginBottom: '10px' }}>Confirm Your Pickup Details</h4>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <input type="text" className="input-field" placeholder="Charity Name" value={charityName} onChange={e => setCharityName(e.target.value)} style={{ marginBottom: 0 }} />
+              <input type="text" className="input-field" placeholder="Your Address" value={charityAddress} onChange={e => setCharityAddress(e.target.value)} style={{ marginBottom: 0 }} />
+            </div>
           </div>
-        ))}
+
+          <h3 className="form-title">{activeSearchCity ? `Available Food in ${activeSearchCity}` : 'All Available Food'}</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px', marginTop: '20px' }}>
+            {batches.length === 0 ? <p>No food available {activeSearchCity ? `in ${activeSearchCity}` : ''} at the moment. We are auto-refreshing every 5 seconds...</p> : batches.map(b => (
+              <div key={b.batch_id} style={{ backgroundColor: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 10px rgba(0,0,0,0.05)' }}>
+                <h3 style={{ fontSize: '1.2rem', marginBottom: '10px' }}>{b.description}</h3>
+                <p style={{ color: '#555', marginBottom: '20px' }}>
+                  <strong>Type:</strong> {b.batch_type} | <strong>Weight:</strong> {b.weight_kg} kg <br/>
+                  <strong>Donor:</strong> {b.donor_name} <br/>
+                  <strong>Address:</strong> {b.address}
+                </p>
+                <button onClick={() => requestBatch(b.batch_id)} className="btn-dark" style={{ width: 'auto', padding: '10px 20px' }}>Request Pickup</button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* My Claims / Tickets */}
+        <div style={{ flex: '1 1 400px' }}>
+          <div style={{ backgroundColor: 'var(--color-light-tan)', padding: '30px', borderRadius: '8px' }}>
+            <h3 className="form-title">My Tickets</h3>
+            <p style={{marginBottom: '20px', color: '#555'}}>Check the status of your requests here.</p>
+            {myClaims.length === 0 ? <p>You have not made any requests yet.</p> : myClaims.map(c => (
+              <div key={c.claim_id} style={{ backgroundColor: 'white', padding: '15px', borderRadius: '4px', marginBottom: '10px', borderLeft: `5px solid ${c.pickup_status === 'completed' ? '#16a34a' : '#eab308'}` }}>
+                <strong>{c.description}</strong> ({c.weight_kg} kg)<br/>
+                Donor: {c.donor_name} <br/>
+                Address: {c.donor_address} <br/>
+                <span style={{ display: 'inline-block', marginTop: '10px', padding: '5px 10px', backgroundColor: c.pickup_status === 'completed' ? '#dcfce7' : '#fefce8', color: c.pickup_status === 'completed' ? '#166534' : '#a16207', borderRadius: '4px', fontSize: '0.9rem', fontWeight: 'bold' }}>
+                  Status: {c.pickup_status.toUpperCase()}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </div>
   );

@@ -61,6 +61,8 @@ function Home() {
       setReviewStatus('Network error.');
     }
   };
+  const averageRating = reviews.length > 0 ? (reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length).toFixed(1) : 0;
+  const reviewCount = reviews.length;
 
   return (
     <>
@@ -77,12 +79,16 @@ function Home() {
       {/* Hero Image & Form Section */}
       <section className="hero-section">
         <div className="hero-overlay">
-          <h1 className="hero-large-text">Rescue&Feed</h1>
+          <h1 className="hero-large-text">SharePlate</h1>
           <h2 className="hero-sub-text">Connecting Donors with Local NGOs Instantly</h2>
           
           <div style={{ marginTop: '30px', background: 'var(--color-light-tan)', padding: '15px 20px', display: 'inline-block', borderRadius: '4px' }}>
-            <div style={{ color: 'var(--color-dark-brown)', fontSize: '1.2rem', marginBottom: '5px' }}>★★★★★ <span style={{fontSize: '0.9rem'}}>(4.9)</span></div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--color-text-dark)' }}>Based on 3,538 Rescues</div>
+            <div style={{ color: 'var(--color-dark-brown)', fontSize: '1.2rem', marginBottom: '5px' }}>
+              {Array.from({ length: Math.max(0, Math.round(averageRating)) }).map((_, i) => '★').join('')}
+              {Array.from({ length: 5 - Math.max(0, Math.round(averageRating)) }).map((_, i) => '☆').join('')}
+              <span style={{fontSize: '0.9rem', marginLeft: '10px'}}>({averageRating})</span>
+            </div>
+            <div style={{ fontSize: '0.8rem', color: 'var(--color-text-dark)' }}>Based on {reviewCount} Rescues</div>
           </div>
         </div>
 
@@ -120,7 +126,7 @@ function Home() {
               <p>We provide a streamlined platform for charities and NGOs to instantly see what surplus food is available from nearby mess halls and restaurants, allowing for quick pickups.</p>
             </div>
           </div>
-          <div className="feature-image" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1593113565287-c1285b73ab06?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')" }}></div>
+          <div className="feature-image" style={{ backgroundImage: "url('/ngo.png')" }}></div>
         </div>
 
         <div className="feature-card">
@@ -146,10 +152,9 @@ function Home() {
             reviews.map((review) => (
               <div key={review.review_id} className="review-card">
                 <div className="review-text">
-                  <h3>"{review.comments}"</h3>
-                  <div className="review-author">{review.reviewer_name} (Rating: {review.rating}/5)</div>
+                  <h3 style={{ fontSize: '1rem', fontStyle: 'italic', marginBottom: '10px' }}>"{review.comments}"</h3>
+                  <div className="review-author" style={{ fontSize: '0.9rem', color: '#666' }}>{review.reviewer_name} (Rating: {review.rating}/5)</div>
                 </div>
-                <div className="review-image" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80')" }}></div>
               </div>
             ))
           )}
@@ -174,7 +179,7 @@ function Home() {
         <h2 className="features-header text-center">Proud to be Covered Here</h2>
         <div className="logos-grid">
           <h2>FoodBank</h2>
-          <h2>CityRescue</h2>
+          <h2>SharePlate</h2>
           <h2>EcoDaily</h2>
           <h2>ZeroWaste</h2>
         </div>

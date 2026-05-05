@@ -4,13 +4,9 @@ import { useAuth } from '../../context/AuthContext';
 export default function DonorDashboard() {
   const { user, token } = useAuth();
   const [batches, setBatches] = useState([]);
-  const [stats, setStats] = useState({ successful_pickups: 0 });
   const [pendingRequests, setPendingRequests] = useState([]);
-  const [form, setForm] = useState({ description: '', batch_type: 'Dry_Goods', weight_kg: '', expiry_hours: '24' });
+  const [form, setForm] = useState({ description: '', batch_type: 'Dry_Goods', weight_kg: '', expiry_hours: '24', delivery_city: '', donor_name: user?.name || '', pickup_address: user?.address || '' });
   const [msg, setMsg] = useState('');
-
-  // Geolocation
-  const [locInput, setLocInput] = useState('40.730610, -73.935242');
 
   const fetchBatches = async () => {
     const res = await fetch('/api/batches/me', {
@@ -19,7 +15,6 @@ export default function DonorDashboard() {
     if (res.ok) {
       const data = await res.json();
       setBatches(data.batches || []);
-      setStats(data.stats || { successful_pickups: 0 });
     }
   };
 
@@ -31,8 +26,17 @@ export default function DonorDashboard() {
   };
 
   useEffect(() => { 
+    // Initial fetch
     fetchBatches(); 
     fetchPendingRequests();
+
+    // Short Polling
+    const interval = setInterval(() => {
+      fetchBatches(); 
+      fetchPendingRequests();
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleSubmit = async (e) => {
@@ -45,20 +49,10 @@ export default function DonorDashboard() {
     });
     if (res.ok) {
       setMsg('Batch posted successfully!');
-      setForm({ description: '', batch_type: 'Dry_Goods', weight_kg: '', expiry_hours: '24' });
+      setForm({ description: '', batch_type: 'Dry_Goods', weight_kg: '', expiry_hours: '24', delivery_city: '' });
       fetchBatches();
     } else {
       setMsg('Failed to post batch.');
-    }
-  };
-
-  const handleGetLocation = (e) => {
-    e.preventDefault();
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => setLocInput(`${pos.coords.latitude.toFixed(6)}, ${pos.coords.longitude.toFixed(6)}`),
-        (err) => alert('Geolocation failed: ' + err.message)
-      );
     }
   };
 
@@ -82,46 +76,38 @@ export default function DonorDashboard() {
       <h2 className="features-header">Donor Dashboard</h2>
       <p style={{marginBottom: '20px'}}>Welcome back, {user?.name}</p>
 
-      {/* Gamification Stats */}
-      <div style={{ display: 'flex', gap: '20px', marginBottom: '40px' }}>
-        <div style={{ backgroundColor: 'var(--color-dark-brown)', color: 'white', padding: '20px', borderRadius: '8px', minWidth: '200px' }}>
-          <h3>Total Meals Donated</h3>
-          <p style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>{stats.successful_pickups * 10} <span style={{fontSize: '1rem', fontWeight: 'normal'}}>est.</span></p>
-        </div>
-        <div style={{ backgroundColor: 'var(--color-dark-brown)', color: 'white', padding: '20px', borderRadius: '8px', minWidth: '200px' }}>
-          <h3>Successful Pickups</h3>
-          <p style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>{stats.successful_pickups}</p>
-        </div>
-        <div style={{ backgroundColor: '#166534', color: 'white', padding: '20px', borderRadius: '8px', flex: 1 }}>
-          <h3>Zero-Waste Hero 🏆</h3>
-          <p style={{ marginTop: '10px' }}>Your consistent donations are making a massive impact on the environment and the community!</p>
-        </div>
-      </div>
-
       <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap' }}>
         
         {/* Post Form */}
         <div className="quote-form-container" style={{ position: 'relative', right: '0', bottom: '0', flex: '1 1 400px' }}>
           <h3 className="form-title">Post Surplus Food</h3>
+          <p style={{fontSize: '0.9rem', color: '#555', marginBottom: '20px'}}>
+            Please confirm your pickup details below.
+          </p>
           <form onSubmit={handleSubmit}>
+            <input type="text" className="input-field" placeholder="Donor Name (e.g. Good Bistro)" value={form.donor_name} onChange={e => setForm({...form, donor_name: e.target.value})} required />
+            <input type="text" className="input-field" placeholder="Exact Pickup Address" value={form.pickup_address} onChange={e => setForm({...form, pickup_address: e.target.value})} required />
+            
             <input type="text" className="input-field" placeholder="Description (e.g. 50 sandwiches)" value={form.description} onChange={e => setForm({...form, description: e.target.value})} required />
             <select className="input-field" value={form.batch_type} onChange={e => setForm({...form, batch_type: e.target.value})}>
               <option value="Dry_Goods">Dry Goods</option>
               <option value="Refrigerated">Refrigerated</option>
+              <option value="Produce">Produce (Fruits/Vegetables)</option>
+              <option value="Prepared_Meals">Prepared Meals</option>
+              <option value="Baked_Goods">Baked Goods</option>
+              <option value="Beverages">Beverages</option>
+              <option value="Other">Other</option>
             </select>
-            <div className="form-row">
-              <input type="number" step="0.1" className="input-field" placeholder="Weight (kg)" value={form.weight_kg} onChange={e => setForm({...form, weight_kg: e.target.value})} required />
-              <input type="number" className="input-field" placeholder="Expires in (Hours)" value={form.expiry_hours} onChange={e => setForm({...form, expiry_hours: e.target.value})} required />
-            </div>
-
-            <label style={{ fontSize: '0.9rem', marginBottom: '5px', display: 'block', color: '#555' }}>Pickup Location Coordinates:</label>
-            <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-              <input type="text" className="input-field" value={locInput} onChange={e => setLocInput(e.target.value)} style={{ marginBottom: 0 }} />
-              <button className="btn-primary" onClick={handleGetLocation} style={{ width: 'auto', padding: '0 15px' }}>Get Location</button>
-            </div>
-
+            <input type="number" className="input-field" placeholder="Weight (kg)" value={form.weight_kg} onChange={e => setForm({...form, weight_kg: e.target.value})} required />
+            <select className="input-field" value={form.expiry_hours} onChange={e => setForm({...form, expiry_hours: e.target.value})}>
+              <option value="12">Expires in 12 Hours</option>
+              <option value="24">Expires in 24 Hours</option>
+              <option value="48">Expires in 48 Hours</option>
+            </select>
+            <input type="text" className="input-field" placeholder="Delivery City (e.g. Chicago)" value={form.delivery_city} onChange={e => setForm({...form, delivery_city: e.target.value})} required />
+            
             <button type="submit" className="btn-dark">Post Batch</button>
-            {msg && <p style={{marginTop: '10px'}}>{msg}</p>}
+            {msg && <div className="status-message">{msg}</div>}
           </form>
         </div>
 
@@ -135,7 +121,8 @@ export default function DonorDashboard() {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>
                     <strong>{r.description}</strong> ({r.weight_kg} kg)<br/>
-                    Requested by: <strong>{r.charity_name}</strong>
+                    Requested by: <strong>{r.charity_name}</strong><br/>
+                    Charity Address: {r.charity_address}
                   </div>
                   <button onClick={() => handleAcceptRequest(r.claim_id)} className="btn-dark" style={{ width: 'auto', padding: '8px 15px', backgroundColor: '#16a34a', border: 'none' }}>Accept</button>
                 </div>

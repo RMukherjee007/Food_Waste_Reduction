@@ -10,21 +10,8 @@ const sampleRoutes = require('./routes/sampleRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
-const http = require('http');
-const { Server } = require('socket.io');
 
 const app = express();
-const server = http.createServer(app);
-const io = new Server(server, {
-  cors: { origin: '*' }
-});
-
-// Attach io to req object so controllers can access it
-app.use((req, res, next) => {
-  req.io = io;
-  next();
-});
-
 const PORT = process.env.PORT || 5001;
 
 // Trust the first proxy in production for accurate IP rate limiting
@@ -69,7 +56,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start Server
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`
    Server is running on http://localhost:${PORT}
    Rate Limiting: 100 req / 15 min

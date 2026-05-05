@@ -1,9 +1,9 @@
 export default function About() { 
   return (
     <div className="page-padding">
-      <h2 className="features-header">About Rescue&Feed</h2>
+      <h2 className="features-header">About SharePlate</h2>
       <p style={{ maxWidth: '600px', lineHeight: '1.6', color: '#444' }}>
-        Rescue&Feed was founded with a single mission: to bridge the gap between surplus food and food insecurity.
+        SharePlate was founded with a single mission: to bridge the gap between surplus food and food insecurity.
         Every single day, restaurants and university mess halls prepare more food than they can sell, while nearby
         charities struggle to keep their pantries full. By creating a direct, real-time connection between donors
         and receivers, we eliminate the logistical friction that causes food waste.

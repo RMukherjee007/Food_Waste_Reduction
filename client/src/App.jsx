@@ -5,6 +5,8 @@ import Donors from './pages/Donors';
 import Charities from './pages/Charities';
 import HowToJoin from './pages/HowToJoin';
 import Contact from './pages/Contact';
+import Privacy from './pages/Privacy';
+import Accessibility from './pages/Accessibility';
 import ProtectedRoute from './components/ProtectedRoute';
 import DonorDashboard from './pages/dashboards/DonorDashboard';
 import ReceiverDashboard from './pages/dashboards/ReceiverDashboard';
@@ -19,15 +21,12 @@ function App() {
     <div className="app-container">
       {/* Shared Navbar */}
       <nav className="navbar">
-        <Link to="/" className="nav-brand" style={{textDecoration: 'none', color: 'inherit'}}>Rescue&Feed</Link>
+        <Link to="/" className="nav-brand" style={{textDecoration: 'none', color: 'inherit'}}>SharePlate</Link>
         <div className="nav-links">
           <Link to="/about">About</Link>
           <Link to="/donors">Donors</Link>
           <Link to="/charities">Charities</Link>
           <Link to="/contact">Contact</Link>
-          {user && (
-            <span onClick={logout} style={{cursor: 'pointer', border: '1px solid white', padding: '5px 15px', borderRadius: '4px'}}>Logout</span>
-          )}
         </div>
       </nav>
 
@@ -39,6 +38,8 @@ function App() {
         <Route path="/charities" element={<Charities />} />
         <Route path="/how-to-join" element={<HowToJoin />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/accessibility" element={<Accessibility />} />
         
         {/* Protected Dashboards */}
         <Route path="/donor" element={<ProtectedRoute allowedRoles={['Restaurant']}><DonorDashboard /></ProtectedRoute>} />
@@ -50,7 +51,10 @@ function App() {
       <footer className="footer-section">
         <div className="footer-col">
           <p>892 Unity Avenue<br/>Chicago, IL 60601</p>
-          <p style={{marginTop: '20px'}}>Privacy Policy<br/>Accessibility Statement</p>
+          <p style={{marginTop: '20px'}}>
+            <Link to="/privacy" style={{color: 'inherit'}}>Privacy Policy</Link><br/>
+            <Link to="/accessibility" style={{color: 'inherit'}}>Accessibility Statement</Link>
+          </p>
         </div>
         <div className="footer-col">
           <Link to="/about">About</Link>
@@ -59,14 +63,15 @@ function App() {
           <Link to="/contact">Contact</Link>
         </div>
         <div className="footer-col text-right">
-          <p>123-456-7890<br/>info@rescueandfeed.org</p>
+          <p>123-456-7890<br/>info@shareplate.org</p>
           <div className="social-icons">
-            <span>fb</span> <span>ig</span> <span>in</span> <span>x</span>
+            <a href="https://linkedin.com/in/RMukherjee007" target="_blank" rel="noreferrer" style={{color: 'white', textDecoration: 'none', marginRight: '10px'}}>LinkedIn</a> 
+            <a href="https://github.com/RMukherjee007" target="_blank" rel="noreferrer" style={{color: 'white', textDecoration: 'none'}}>GitHub</a>
           </div>
         </div>
       </footer>
       <div className="footer-bottom">
-        2026 by Rescue&Feed. Powered by Community.
+        2026 by SharePlate. Powered by Community.
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ export default function Donors() {
         </div>
         <div style={{ padding: '30px', border: '1px solid #ccc' }}>
           <h3>Brand Loyalty</h3>
-          <p style={{ marginTop: '10px' }}>Customers love businesses that care. Display your Rescue&Feed badge proudly.</p>
+          <p style={{ marginTop: '10px' }}>Customers love businesses that care. Display your SharePlate badge proudly.</p>
         </div>
       </div>
     </div>

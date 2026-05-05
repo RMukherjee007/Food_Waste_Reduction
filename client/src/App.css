@@ -229,21 +229,26 @@
 
 .reviews-list {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 15px;
   margin-bottom: 60px;
+  padding-bottom: 10px;
 }
 
 .review-card {
   background-color: var(--color-light-tan);
   color: var(--color-dark-brown);
   display: flex;
-  min-height: 250px;
+  flex: 0 0 auto;
+  min-width: 300px;
+  min-height: 150px;
+  padding: 20px;
+  border-radius: 8px;
 }
 
 .review-text {
-  flex: 2;
-  padding: 50px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -361,4 +366,26 @@
 .page-padding {
   padding: 100px 40px;
   min-height: 60vh;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .header-section, .hero-overlay { padding: 40px 20px; }
+  .header-title { font-size: 2.5rem; }
+  .hero-large-text { font-size: 4rem; margin-top: 10px; }
+  .hero-sub-text { font-size: 1.2rem; }
+  .quote-form-container { 
+    position: static; 
+    width: 100%; 
+    padding: 20px; 
+    box-shadow: none;
+    margin-top: 20px;
+  }
+  .feature-card { flex-direction: column; height: auto; }
+  .feature-image { height: 250px; }
+  .logos-grid { flex-direction: column; gap: 20px; }
+  .footer-section { flex-direction: column; gap: 40px; }
+  .footer-col.text-right { text-align: left; align-items: flex-start; }
+  .page-padding { padding: 40px 20px; }
+  .nav-links { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
 }

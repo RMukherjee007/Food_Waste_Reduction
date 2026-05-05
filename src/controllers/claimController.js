@@ -1,15 +1,16 @@
 const pool = require('../config/db');
+const redisClient = require('../config/redis');
 
 /**
  * Step 1: Charity requests a food batch.
  * Creates a pending claim and locks the batch.
  */
 const requestBatch = async (req, res) => {
-  const { batch_id } = req.body;
+  const { batch_id, charity_name, charity_address } = req.body;
   const charity_id = req.user.user_id;
 
-  if (!batch_id || !charity_id) {
-    return res.status(400).json({ error: 'batch_id and charity_id are required' });
+  if (!batch_id || !charity_name || !charity_address) {
+    return res.status(400).json({ error: 'batch_id, charity_name, and charity_address are required' });
   }
 
   try {
@@ -19,7 +20,7 @@ const requestBatch = async (req, res) => {
     try {
       // 1. Check if the batch is still 'available' and lock the row
       const [batches] = await connection.execute(
-        'SELECT status FROM Food_Batches WHERE batch_id = ? FOR UPDATE',
+        'SELECT status, delivery_city FROM Food_Batches WHERE batch_id = ? FOR UPDATE',
         [batch_id]
       );
 
@@ -38,16 +39,22 @@ const requestBatch = async (req, res) => {
       );
 
       // 3. Create a pending claim
-      const [claimResult] = await connection.execute(
-        'INSERT INTO Claims (batch_id, charity_id, pickup_status) VALUES (?, ?, "pending")',
-        [batch_id, charity_id]
+      const [insertResult] = await connection.execute(
+        'INSERT INTO Claims (batch_id, charity_id, pickup_status, charity_name, charity_address) VALUES (?, ?, "pending", ?, ?)',
+        [batch_id, charity_id, charity_name.trim(), charity_address.trim()]
       );
 
       await connection.commit();
 
+      // Invalidate Cache so it disappears from 'available' immediately
+      const delivery_city = batches[0].delivery_city;
+      const cacheKey = `batches:${delivery_city.trim().toLowerCase()}`;
+      await redisClient.del(cacheKey);
+      await redisClient.del('batches:all');
+
       res.status(201).json({
         message: 'Request sent successfully. Pending restaurant approval.',
-        claim_id: claimResult.insertId
+        claim_id: insertResult.insertId
       });
     } catch (err) {
       await connection.rollback();
@@ -68,10 +75,9 @@ const getPendingRequests = async (req, res) => {
   const donor_id = req.user.user_id;
   try {
     const query = `
-      SELECT c.claim_id, c.batch_id, c.charity_id, c.claimed_at, fb.description, fb.weight_kg, u.name as charity_name
+      SELECT c.claim_id, c.batch_id, c.charity_id, c.claimed_at, fb.description, fb.weight_kg, c.charity_name, c.charity_address
       FROM Claims c
       JOIN Food_Batches fb ON c.batch_id = fb.batch_id
-      JOIN Users u ON c.charity_id = u.user_id
       WHERE fb.donor_id = ? AND c.pickup_status = 'pending'
       ORDER BY c.claimed_at ASC
     `;
@@ -100,7 +106,7 @@ const acceptClaim = async (req, res) => {
     try {
       // Verify the claim belongs to a batch owned by this donor and is pending
       const [claims] = await connection.execute(
-        `SELECT c.batch_id, c.charity_id FROM Claims c 
+        `SELECT c.batch_id, c.charity_id, fb.delivery_city FROM Claims c 
          JOIN Food_Batches fb ON c.batch_id = fb.batch_id 
          WHERE c.claim_id = ? AND fb.donor_id = ? AND c.pickup_status = 'pending' FOR UPDATE`,
         [claim_id, donor_id]
@@ -126,8 +132,11 @@ const acceptClaim = async (req, res) => {
 
       await connection.commit();
 
-      // Emit WebSocket Event to notify charity
-      req.io.emit(`claim_accepted_${claims[0].charity_id}`, { batch_id, message: 'Your request was accepted!' });
+      // Invalidate the cache for this city and all batches
+      const delivery_city = claims[0].delivery_city;
+      const cacheKey = `batches:${delivery_city.trim().toLowerCase()}`;
+      await redisClient.del(cacheKey);
+      await redisClient.del('batches:all');
 
       res.status(200).json({ message: 'Request accepted successfully.' });
     } catch (err) {
@@ -142,4 +151,26 @@ const acceptClaim = async (req, res) => {
   }
 };
 
-module.exports = { requestBatch, getPendingRequests, acceptClaim };
+/**
+ * Fetch claims for a Charity
+ */
+const getMyClaims = async (req, res) => {
+  const charity_id = req.user.user_id;
+  try {
+    const query = `
+      SELECT c.claim_id, c.batch_id, c.pickup_status, c.claimed_at, fb.description, fb.weight_kg, u.name as donor_name, u.address as donor_address
+      FROM Claims c
+      JOIN Food_Batches fb ON c.batch_id = fb.batch_id
+      JOIN Users u ON fb.donor_id = u.user_id
+      WHERE c.charity_id = ?
+      ORDER BY c.claimed_at DESC
+    `;
+    const [claims] = await pool.execute(query, [charity_id]);
+    res.status(200).json(claims);
+  } catch (error) {
+    console.error('Error fetching my claims:', error);
+    res.status(500).json({ error: 'Failed to fetch claims' });
+  }
+};
+
+module.exports = { requestBatch, getPendingRequests, acceptClaim, getMyClaims };
